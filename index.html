@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Measurement Converter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+    </style>
+</head>
+<body>
+    <h1>COZY BAKING</h1>
+    <h2>Measurement Converter</h2>
+
+    <!-- Container for the labels with background image -->
+    <div class="label-container">
+        <img src="images/chefhat.png" alt="Sticker" class="sticker">
+        <div class="second-sticker">
+            <img src="images/cake.png" alt="Sticker">
+            <div class="speech-bubble">welcome! 🩷</div>
+
+        </div>
+
+        <!-- Inner container for the elements -->
+        <div class="form-inner-container">
+            <!-- Group for Quantity and Ingredient in one line -->
+            <div class="input-group">
+                <label for="inputQuantity" class="input-label"></label>
+                <input type="number" id="inputQuantity" min="0" step="any" placeholder="Enter Quantity" aria-label="Enter quantity of ingredient">
+
+                <label for="inputIngredient" class="input-label"></label>
+
+                <select id="inputIngredient" aria-label="Select ingredient">
+                    <option value="">Select Ingredient</option>
+                    <option value="flour">Flour</option>
+                    <option value="sugar">Sugar</option>
+                    <option value="brown_sugar">Brown Sugar</option>
+                    <option value="cocoa_powder">Cocoa Powder</option>
+                    <option value="butter">Butter</option>
+                    <option value="milk">Milk</option>
+                    <option value="honey">Honey</option>
+                    <option value="baking_powder">Baking Powder</option>
+                    <option value="baking_soda">Baking Soda</option>
+                    <option value="salt">Salt</option>
+                </select>
+            </div>
+            
+
+            <!-- Group for From Unit and To Unit in one line -->
+            <div class="input-group">
+                <label for="inputFromUnit" class="input-label">From: </label>
+                <select id="inputFromUnit" aria-label="Select the unit you want to convert from">
+                    <option value="cup">cup</option>
+					<option value="us_tsp">US tsp</option>
+                    <option value="imperial_tsp">Imperial tsp</option>
+                    <option value="australian_tsp">Australian tsp</option>
+                    <option value="us_tbsp">US tbsp</option>
+                    <option value="imperial_tbsp">Imperial tbsp</option>
+                    <option value="australian_tbsp">Australian tbsp</option>
+                    <option value="tbsp">Tbsp</option>
+                    <option value="tsp">Tsp</option>
+                    <option value="oz">Oz</option>
+                    <option value="lb">Lb</option>
+                    <option value="ml">ml</option>
+                    <option value="dl">dl</option>
+                    <option value="g">gram</option>
+                    <option value="kg">kg</option>
+                    <option value="fl_oz">fl Oz</option>
+                </select>
+
+                <label for="inputToUnit" class="input-label">To: </label>
+                <select id="inputToUnit" aria-label="Select the unit you want to convert to">
+                    <option value="g">gram</option>
+                    <option value="us_tsp">US tsp</option>
+                    <option value="imperial_tsp">Imperial tsp</option>
+                    <option value="australian_tsp">Australian tsp</option>
+                    <option value="us_tbsp">US tbsp</option>
+                    <option value="imperial_tbsp">Imperial tbsp</option>
+                    <option value="australian_tbsp">Australian tbsp</option>
+                    <option value="cup">cup</option>
+                    <option value="tbsp">Tbsp</option>
+                    <option value="tsp">tsp</option>
+                    <option value="oz">Oz</option>
+                    <option value="lb">lb</option>
+                    <option value="ml">ml</option>
+                    <option value="dl">dl</option>
+                    <option value="kg">kg</option>
+                    <option value="fl_oz">fl Oz</option>
+                </select>
+            </div>
+
+            <!-- Result Display -->
+            <div id="outputValue"></div>
+        </div>
+
+        <!-- Convert Button (outside of the inner container) -->
+        <button id="convertButton">Convert</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<style>
+body {
+    background-color: #F5E1D3;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+}
+
+h1, h2 {
+    text-align: center;
+    font-family: Gloria Hallelujah, regular;
+    font-weight: normal;
+    color: #CC800E;
+}
+
+h1 {
+    font-size: 50px;
+    margin-top: 20px;
+}
+
+h2 {
+    font-size: 20px;
+    margin-top: -60px;
+}
+
+.label-container {
+    background-image: url(images/vecteezy_notebook-paper-backgrounds_99222.png);
+    background-size: cover;
+    padding: 20px;
+    border-radius: 0px;
+    width: 80%;
+    max-width: 471px; /* Set fixed width */
+    height: 451px; /* Set fixed height */
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative; /* Allows the sticker to be positioned relative to this container */
+}
+
+.form-inner-container {
+    background-color: #FFF1D4; /* Background just around the form elements */
+    padding: 20px;
+    border-radius: 20px;
+    width: 60%;
+    height: 90%;
+    box-sizing: border-box;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: black;
+    display: block;
+    text-align: center;
+}
+
+.input-group input,
+.input-group select {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 80%; /* Ensure the input and select have the same width */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+        border: 2px solid #333; /* Thicker stroke with a darker color */
+        border-color: #F2B5D4
+
+
+}
+
+
+
+button {
+    padding: 10px 20px;
+    background-color: #FAD0C9;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #F2B5D4;
+}
+
+#outputValue {
+    margin-top: 20px;
+    font-size: 18px;
+}
+.sticker {
+    position: absolute;
+    top: -60px;   /* Adjusts the sticker upwards */
+    right: -50px; /* Adjusts the sticker to the right */
+    width: 110px;  /* Adjust the size to make it small */
+    height: auto; /* Maintains aspect ratio */
+    z-index: 10;  /* Ensures it's above the form container */
+    transform: rotate(39.58deg); /* Rotate the sticker */
+}
+.second-sticker img {
+    width: 141px;  /* Set the width of the second sticker */
+    height: 112px;  /* Set the height of the second sticker */
+    object-fit: contain; /* Ensures the image fits within the specified dimensions */
+    position: absolute; /* Position the sticker */
+    bottom: 10px; /* Adjust the position from the top */
+    left: -190px; /* Adjust the position from the left */
+    z-index: 10; /* Ensures it's above the form container */
+
+}
+
+/* Speech Bubble Style */
+.speech-bubble {
+    position: absolute;
+    bottom: 100px;  /* Position the bubble above the sticker */
+    left: -190px;  /* Position the bubble horizontally centered */
+    transform: translateX(-50%);  /* Center the bubble */
+    background-color: #FAD0C9;  /* Bubble background color */
+    color: #333;  /* Text color */
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Gloria Hallelujah, regular;
+    white-space: nowrap;
+    width: 200px;  /* Set the width of the bubble */
+    text-align: center;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);  /* Drop shadow */
+
+}
+
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    top: 100%;  /* Place the triangle at the bottom of the bubble */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px;
+    border-style: solid;
+    border-color: #FAD0C9 transparent transparent transparent;  /* Create the triangle effect */
+}
+
+
+@media (max-width: 768px) {
+    /* Adjust Label Font Sizes */
+    .input-group label {
+        font-size: 5vw;
+    }
+
+    /* Adjust Input and Select Size */
+    .input-group input,
+    .input-group select {
+        padding: 3vw; /* Adjust padding */
+        font-size: 4vw; /* Adjust font size */
+        width: 80%;
+        max-width: 300px; /* Set max-width to prevent stretching */
+    }
+
+    /* Button Size */
+    button {
+        padding: 5vw 10vw;
+        font-size: 5vw;
+    }
+
+    /* Adjust Sticker and Speech Bubble */
+    .second-sticker img {
+        width: 40vw;
+        left: -40vw;
+    }
+
+    .speech-bubble {
+        width: 50vw;
+        font-size: 6vw;
+        padding: 4vw;
+    }
+
+    /* Adjust Triangle size */
+    .speech-bubble::after {
+        border-width: 5vw;
+    }
+}
+
+/* Media Query for Mobile Screens */
+@media (max-width: 480px) {
+    /* Adjust Input and Select Size */
+    .input-group input,
+    .input-group select {
+        padding: 4vw;
+        font-size: 5vw;
+        width: 80%;
+        max-width: 250px; /* Set max-width for smaller screens */
+    }
+
+    /* Adjust Button Size */
+    button {
+        padding: 6vw 12vw;
+        font-size: 6vw;
+    }
+
+    /* Adjust Sticker and Speech Bubble */
+    .second-sticker img {
+        width: 50vw;
+        left: -50vw;
+    }
+
+    .speech-bubble {
+        width: 60vw;
+        font-size: 8vw;
+        padding: 6vw;
+    }
+
+    /* Adjust Triangle size */
+    .speech-bubble::after {
+        border-width: 6vw;
+    }
+}
+
+</style>
